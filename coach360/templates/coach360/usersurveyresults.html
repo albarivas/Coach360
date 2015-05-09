@@ -1,0 +1,36 @@
+{% extends "coach360/base_generic.html" %}
+{% block content %}
+<div class="row">
+ <p>Respuestas encuesta <b>{{oSurvey}}</b> sobre el usuario <b>{{oEvaluatedUser}}</b>:</p>
+	<table class="table table-striped table-bordered table-condensed">
+	<thead style="font-weight:bold;">
+	<tr>
+		<td>Pregunta</td>
+		{% for oUser in lUsers %}
+			<td>{{oUser}}</td>
+		{% endfor %}
+		<td>Media</td>
+	</tr>
+	</thead>
+	<tbody>
+		{% for oQuestion,lResponses in dInfo.items %}
+			<tr>
+			<td>{{oQuestion}}</td> 
+			{% for oResponse in lResponses %}
+				{% if oResponse %}
+					<td>{{oResponse.response}}</td>
+				{% else %}
+					<td>-</td>
+				{% endif %}
+			{% endfor %}
+			{% for mean in lMeans %}
+				{% if forloop.counter == forloop.parentloop.counter %}
+      				<td>{{mean}}</td>
+          		{% endif %}
+   			{% endfor %}
+			</tr>
+		{% endfor %}
+	</tbody>
+	</table>
+ </div>
+{%endblock%}

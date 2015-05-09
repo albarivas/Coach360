@@ -1,0 +1,33 @@
+{% extends "coach360/base_generic.html" %}
+{% block content %}
+<div class="row">
+
+	{% if poll %}
+		<div class="page-header">
+        <h2 class="">{{poll.question}}</h2>
+        </div>
+    	<form action="/coach360/1/vote/" method="post">
+		{% csrf_token %}
+        <div class="form-group">
+  		{% for choice in poll.choice_set.all %}
+ 
+    		<div class="radio" >
+  			<label >
+    		<input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{choice.id}}">
+			 {{ choice.text }}
+       		</label>
+			</div> 
+		{% endfor %}
+        </div>
+        
+    	<div class="form-group " style="margin-top:10px">
+      	<button type="submit" class="btn btn-default">Submit</button>
+    
+ 		</div>
+		</form>
+		</div>
+ 	{% else %}
+   			 <p>No info about this poll</p>
+	{% endif %}
+</div>
+{% endblock %}

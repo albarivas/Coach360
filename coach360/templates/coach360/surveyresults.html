@@ -1,0 +1,15 @@
+{% extends "coach360/base_generic.html" %}
+{% block content %}
+<div class="row">
+		{% if lUsers %}
+    			<div class="page-header"> <h2> Resultados para la encuesta <b>{{oSurvey}}</b>: </h2></div>
+    		<ul>
+    			{% for oUser in lUsers %}
+        		<li><a style="color:black" href="/coach360/{{ oSurvey.pk }}/{{oUser.pk}}/results/"> {{ oUser.username }} </a></li>
+    			{% endfor %}
+   			 </ul>
+		{% else %}
+   			 <p> No hay usuarios a evaluar. </p>
+		{% endif %}
+ </div>
+{%endblock%}

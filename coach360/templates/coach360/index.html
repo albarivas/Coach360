@@ -1,0 +1,16 @@
+{% extends "coach360/base_generic.html" %}
+{% block content %}
+<div class="row">
+		{% if lSurveys %}
+    			<div class="page-header"> <h2> Encuestas </h2></div>
+    		<ul>
+    			
+    			{% for oSurvey in lSurveys %}
+        		<li><a style="color:black" href="/coach360/{{ oSurvey.pk }}/"> {{ oSurvey.title }} </a></li>
+    			{% endfor %}
+   			 </ul>
+		{% else %}
+   			 <p> No hay encuestas disponibles. </p>
+		{% endif %}
+ </div>
+{%endblock%}
